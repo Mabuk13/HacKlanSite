@@ -5,3 +5,5 @@ This repository is purely for experimentation and the love of the game. We are b
 View the Word Doc if you want to find out how to get unrestricted Windows on your PLD.
 
 Instructions in Word Doc is still in progress it is not done yet.
+DISCLAIMER
+ANY SERVICE OR USAGE OF OUR MATERIAL IS NOT LINKED TO US AND ITS ALL ON YOU
