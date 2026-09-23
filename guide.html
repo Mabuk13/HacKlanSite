@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROJECT SDBP - HacKlan 2026</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Lucida Console", monospace;
+    background: #0b0b0b;
+    color: #d0d0d0;
+}
+
+/* TOP NAVIGATION */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 25px;
+
+    background: #101010;
+    border-bottom: 1px solid #550000;
+
+    box-shadow: 0 0 15px rgba(255,0,0,0.08);
+}
+
+.logo {
+    color: #ff3030;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #999;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #ff3030;
+}
+
+/* BACK BUTTON */
+
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+    z-index: 2000;
+
+    background: #151515;
+    color: #ff4040;
+
+    border: 1px solid #8b0000;
+    border-left: 4px solid red;
+
+    padding: 12px 20px;
+
+    font-family: "Lucida Console", monospace;
+    font-size: 14px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    box-shadow: 0 0 10px rgba(255,0,0,0.2);
+}
+
+.back-button:hover {
+    background: #ff2020;
+    color: black;
+
+    box-shadow:
+        0 0 20px red;
+
+    transform: translateX(-5px);
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 70px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #220000 0%,
+            #111 40%,
+            #0b0b0b 100%
+        );
+
+    border-bottom: 2px solid #8b0000;
+}
+
+.terminal-label {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: #ff2020;
+    font-size: clamp(30px, 6vw, 52px);
+    margin: 0;
+
+    text-shadow:
+        0 0 10px rgba(255,0,0,0.4);
+}
+
+.subtitle {
+    color: #aaa;
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+.status {
+    display: inline-block;
+
+    margin-top: 25px;
+    padding: 8px 15px;
+
+    color: #ff5050;
+
+    border: 1px solid #700000;
+    border-radius: 4px;
+
+    background: #120000;
+}
+
+/* MAIN */
+
+.container {
+    width: min(1000px, 90%);
+    margin: auto;
+    padding: 40px 0 80px;
+}
+
+/* CARDS */
+
+.card {
+    background: #151515;
+
+    border: 1px solid #333;
+    border-left: 4px solid #a00000;
+
+    padding: 25px;
+    margin: 25px 0;
+
+    border-radius: 8px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+    border-left-color: #ff2020;
+}
+
+/* HEADINGS */
+
+h2 {
+    color: #ff4040;
+
+    border-bottom: 1px solid #550000;
+
+    padding-bottom: 10px;
+
+    margin-top: 0;
+}
+
+h3 {
+    color: #ff7070;
+}
+
+p {
+    line-height: 1.7;
+}
+
+ul {
+    line-height: 1.9;
+}
+
+/* WARNING */
+
+.warning {
+    border-left-color: red;
+
+    background:
+        linear-gradient(
+            90deg,
+            #210000,
+            #151515
+        );
+}
+
+.warning strong {
+    color: #ff3030;
+}
+
+/* STEP CARDS */
+
+.step {
+    position: relative;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    padding: 22px;
+
+    margin: 18px 0;
+
+    border-radius: 6px;
+
+    transition: 0.25s;
+}
+
+.step:hover {
+    transform: translateX(5px);
+
+    border-color: #700000;
+
+    box-shadow:
+        0 0 15px rgba(255,0,0,0.1);
+}
+
+.step-number {
+    color: #ff2020;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+.step-title {
+    color: #eee;
+
+    font-size: 20px;
+
+    margin-bottom: 12px;
+}
+
+/* TERMINAL */
+
+.terminal {
+    background: #050505;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    overflow-x: auto;
+}
+
+.terminal-header {
+    color: #666;
+
+    margin-bottom: 12px;
+}
+
+.terminal-text {
+    color: #ff5555;
+
+    white-space: pre-wrap;
+}
+
+/* REQUIREMENTS */
+
+.requirements {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.requirement {
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    padding: 18px;
+
+    border-radius: 6px;
+
+    color: #bbb;
+}
+
+.requirement span {
+    display: block;
+
+    color: #ff4040;
+
+    margin-bottom: 8px;
+}
+
+/* PROGRESS */
+
+.progress-container {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+
+    background: #222;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress {
+    width: 100%;
+    height: 100%;
+
+    background: #a00000;
+}
+
+/* LINKS */
+
+a {
+    color: #ff5050;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff8080;
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #666;
+
+    border-top: 1px solid #222;
+
+    background: #090909;
+}
+
+.footer-red {
+    color: #8b0000;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header {
+        padding: 50px 15px;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .back-button {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        PROJECT_SDBP
+    </div>
+
+    <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#steps">Steps</a>
+        <a href="#risks">Risks</a>
+        <a href="#credits">Credits</a>
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="terminal-label">
+        [ HACKLAN 2026 / DOCUMENTATION ]
+    </div>
+
+    <h1>PROJECT SDBP</h1>
+
+    <div class="subtitle">
+        System Documentation & Boot Project
+    </div>
+
+    <div class="status">
+        STATUS: DOCUMENTATION LOADED
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- OVERVIEW -->
+
+<section id="overview" class="card">
+
+    <h2>// PROJECT OVERVIEW</h2>
+
+    <p>
+        This page documents the concepts and considerations
+        surrounding a dual-boot configuration, where multiple
+        operating systems can exist on the same computer.
+    </p>
+
+    <div class="terminal">
+
+        <div class="terminal-header">
+            SYSTEM_INFO
+        </div>
+
+        <div class="terminal-text">
+> PROJECT: SDBP
+> TYPE: SYSTEM DOCUMENTATION
+> YEAR: 2026
+> PLATFORM: WINDOWS
+> MODE: DUAL-BOOT CONCEPT
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WARNING -->
+
+<section id="risks" class="card warning">
+
+    <h2>// ⚠ WARNING</h2>
+
+    <p>
+        Modifying partitions, boot configuration, firmware settings,
+        or operating-system installations can result in data loss
+        or an unusable computer if performed incorrectly.
+    </p>
+
+    <p>
+        The source document specifically warns about the possibility
+        of accidentally wiping the drive or damaging the device.
+    </p>
+
+    <strong>
+        ALWAYS BACK UP IMPORTANT DATA BEFORE MAKING SYSTEM-LEVEL
+        CHANGES.
+    </strong>
+
+</section>
+
+
+<!-- REQUIREMENTS -->
+
+<section id="requirements" class="card">
+
+    <h2>// REQUIREMENTS</h2>
+
+    <p>
+        The source document lists several pieces of hardware and
+        software preparation for its project.
+    </p>
+
+    <div class="requirements">
+
+        <div class="requirement">
+            <span>[01]</span>
+            Personal computer
+        </div>
+
+        <div class="requirement">
+            <span>[02]</span>
+            USB storage
+        </div>
+
+        <div class="requirement">
+            <span>[03]</span>
+            USB keyboard
+        </div>
+
+        <div class="requirement">
+            <span>[04]</span>
+            USB mouse
+        </div>
+
+        <div class="requirement">
+            <span>[05]</span>
+            Required system files
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONCEPT -->
+
+<section class="card">
+
+    <h2>// WHAT IS DUAL BOOTING?</h2>
+
+    <p>
+        Dual booting is a configuration in which a computer contains
+        two operating systems and allows the user to select which
+        operating system starts when the computer boots.
+    </p>
+
+    <div class="step">
+
+        <div class="step-number">
+            SYSTEM CONCEPT
+        </div>
+
+        <div class="step-title">
+            OS A + OS B
+        </div>
+
+        <p>
+            A boot manager can present the available operating
+            systems and allow the user to select one.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- STEPS -->
+
+<section id="steps" class="card">
+
+    <h2>// PROJECT PHASES</h2>
+
+    <p>
+        The source document organizes the project into seven major
+        phases. The detailed hardware-modification instructions are
+        intentionally not reproduced here.
+    </p>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 01
+        </div>
+
+        <div class="step-title">
+            Preparation
+        </div>
+
+        <p>
+            Gather the required equipment, installation media,
+            drivers, and other files before beginning.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 02
+        </div>
+
+        <div class="step-title">
+            Installation Media
+        </div>
+
+        <p>
+            Prepare appropriate installation media for the operating
+            system and verify that the correct files are being used.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 03
+        </div>
+
+        <div class="step-title">
+            Boot Configuration
+        </div>
+
+        <p>
+            The source document then moves into firmware and boot
+            configuration. This stage can affect how the computer
+            starts and should only be performed with appropriate
+            authorization and understanding of the device.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 04
+        </div>
+
+        <div class="step-title">
+            Operating System Setup
+        </div>
+
+        <p>
+            The document describes the operating-system installation
+            stage and the creation or modification of disk partitions.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 05
+        </div>
+
+        <div class="step-title">
+            Initial Configuration
+        </div>
+
+        <p>
+            After installation, the system is configured with the
+            appropriate regional, keyboard, network, and account
+            settings.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 06
+        </div>
+
+        <div class="step-title">
+            Second OS Configuration
+        </div>
+
+        <p>
+            The source document describes configuring the second
+            operating-system environment and synchronizing its
+            required settings.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            STEP 07
+        </div>
+
+        <div class="step-title">
+            Boot Selection
+        </div>
+
+        <p>
+            The final phase concerns selecting between the available
+            operating systems during startup.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SAFETY -->
+
+<section class="card">
+
+    <h2>// SAFETY CHECKLIST</h2>
+
+    <ul>
+
+        <li>Back up important files.</li>
+
+        <li>Verify that you understand the changes being made.</li>
+
+        <li>Confirm that the computer is yours or that you have
+            permission to modify it.</li>
+
+        <li>Keep recovery media available.</li>
+
+        <li>Do not modify a managed school device without
+            authorization.</li>
+
+        <li>Check the manufacturer's documentation for your
+            specific hardware.</li>
+
+    </ul>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<section class="card">
+
+    <h2>// DOCUMENTATION STATUS</h2>
+
+    <p>
+        Project documentation loaded successfully.
+    </p>
+
+    <div class="progress-container">
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONCLUSION -->
+
+<section class="card">
+
+    <h2>// CONCLUSION</h2>
+
+    <p>
+        The source document concludes by describing a completed
+        dual-boot configuration and explains that the computer can
+        present an operating-system selection screen during startup.
+    </p>
+
+    <div class="terminal">
+
+        <div class="terminal-header">
+            PROJECT_COMPLETE
+        </div>
+
+        <div class="terminal-text">
+> DOCUMENTATION COMPLETE
+> SYSTEM CONCEPT: DUAL BOOT
+> STATUS: COMPLETE
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CREDITS -->
+
+<section id="credits" class="card">
+
+    <h2>// CREDITS</h2>
+
+    <p>
+        Credits listed in the source document:
+    </p>
+
+    <ul>
+        <li>Students of Singapore</li>
+        <li>RRPLD</li>
+    </ul>
+
+</section>
+
+
+</main>
+
+
+<!-- BACK BUTTON -->
+
+<a href="#" class="back-button">
+    ← BACK
+</a>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    PROJECT SDBP
+    <span class="footer-red">///</span>
+    HacKlan 2026
+
+    <br><br>
+
+    <span>
+        Documentation interface
+    </span>
+
+</footer>
+
+
+<script>
+
+/* Small terminal-style hover effect */
+
+const steps = document.querySelectorAll(".step");
+
+steps.forEach(step => {
+
+    step.addEventListener("mouseenter", () => {
+        step.style.boxShadow =
+            "0 0 15px rgba(255,0,0,0.15)";
+    });
+
+    step.addEventListener("mouseleave", () => {
+        step.style.boxShadow = "none";
+    });
+
+});
+
+</script>
+
+</body>
+</html>
